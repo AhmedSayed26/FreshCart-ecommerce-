@@ -3,8 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { LogOut, ShoppingCart } from "lucide-react";
 import { TokenContext } from "../Context/Token.Context";
+import { CartContext } from "../Context/Cart.context";
 export default function Navbar() {
   const { token, LogOOut } = useContext(TokenContext);
+  const { cartInfo } = useContext(CartContext);
+  // const { cartInfo, getAllcart } = useContext(CartContext);
+  // useEffect(() => {
+  //   getAllcart();
+  // }, []);
   return (
     <>
       <nav className="bg-slate-200 py-5">
@@ -60,8 +66,11 @@ export default function Navbar() {
           <ul className="flex justify-between items-center gap-3">
             {token ? (
               <li>
-                <NavLink to={"/cart"}>
+                <NavLink className="relative" to={"/cart"}>
                   <ShoppingCart></ShoppingCart>
+                  <h5 className="absolute top-[-10px] right-[-10px] rounded-full w-5 h-5 p-2 text-white bg-mainColor flex justify-center items-center">
+                    {cartInfo ? cartInfo.numOfCartItems : 0}
+                  </h5>
                 </NavLink>
               </li>
             ) : null}

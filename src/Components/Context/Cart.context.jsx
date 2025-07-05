@@ -87,9 +87,38 @@ export default function CartProvider({ children }) {
       toast.dismiss(loading);
     }
   }
+  async function updateCart({ productId, count }) {
+    // console.log(productId);
+    // console.log(count);
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
+        method: "PUT",
+        data: {
+          count,
+        },
+        headers: {
+          token,
+        },
+      };
+      const { data } = await axios.request(options);
+      toast.success("count update");
+      setcartInfo(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("error...");
+    }
+  }
   return (
     <CartContext.Provider
-      value={{ addTocart, getAllcart, cartInfo, RemoveItem, ClearCart }}
+      value={{
+        addTocart,
+        getAllcart,
+        cartInfo,
+        RemoveItem,
+        ClearCart,
+        updateCart,
+      }}
     >
       {children}
     </CartContext.Provider>

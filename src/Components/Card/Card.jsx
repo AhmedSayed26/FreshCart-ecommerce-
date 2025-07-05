@@ -2,6 +2,7 @@ import { ShoppingCart, Eye, Pause } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { CartContext } from "../Context/Cart.context";
+import { NavLink, Link } from "react-router-dom";
 
 export default function Card({ productInfo }) {
   const {
@@ -36,7 +37,9 @@ export default function Card({ productInfo }) {
                 }}
                 className="IconStyle"
               />
-              <Eye className="IconStyle" />
+              <Link to={`/Product/${id}`}>
+                <Eye className="IconStyle" />
+              </Link>
             </div>
           </div>
           <h3 className="text-sm text-mainColor">{category.name}</h3>

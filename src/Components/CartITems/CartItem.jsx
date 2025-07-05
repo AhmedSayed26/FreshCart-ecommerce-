@@ -4,9 +4,9 @@ import { CartContext } from "../Context/Cart.context";
 
 export default function CartItem({ cartInfo }) {
   console.log(cartInfo);
-  const { count, price, product } = cartInfo;
+  const { count, price, product, _id } = cartInfo;
   const { imageCover, title, id, category } = product;
-  const { RemoveItem } = useContext(CartContext);
+  const { RemoveItem, updateCart } = useContext(CartContext);
   return (
     <div className=" flex justify-between items-center my-4 px-5">
       <div className="flex gap-5">
@@ -28,11 +28,21 @@ export default function CartItem({ cartInfo }) {
         </div>
       </div>
       <div className="space-x-3">
-        <button className="bg-mainColor text-white p-2 rounded-md cursor-pointer">
+        <button
+          onClick={() => {
+            updateCart({ productId: id, count: count + 1 });
+          }}
+          className="bg-mainColor text-white p-2 rounded-md cursor-pointer"
+        >
           <i className="fa-solid fa-plus"></i>
         </button>
         <span> {count} </span>
-        <button className="bg-mainColor text-white p-2 rounded-md cursor-pointer">
+        <button
+          onClick={() => {
+            updateCart({ productId: id, count: count - 1 });
+          }}
+          className="bg-mainColor text-white p-2 rounded-md cursor-pointer"
+        >
           <i className="fa-solid fa-minus"></i>
         </button>
       </div>

@@ -13,6 +13,7 @@ import GardRouteForLogin from "./Components/GardRouteForLogin/GardRouteForLogin"
 import TokenProvider from "./Components/Context/Token.Context";
 import CartProvider from "./Components/Context/Cart.context";
 import Cart from "./Pages/Cart/Cart";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "Product/:id",
+        element: <ProductDetails></ProductDetails>,
       },
     ],
   },
