@@ -14,6 +14,10 @@ import TokenProvider from "./Components/Context/Token.Context";
 import CartProvider from "./Components/Context/Cart.context";
 import Cart from "./Pages/Cart/Cart";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import Checkout from "./Pages/Checkout/checkout";
+import Ordars from "./Pages/Ordars/ALLOrdars";
+import Brands from "./Pages/Brands/Brands";
+// import checkout from "./Pages/Checkout/Checkout";
 
 const routes = createBrowserRouter([
   {
@@ -39,6 +43,18 @@ const routes = createBrowserRouter([
       {
         path: "Product/:id",
         element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "checkout",
+        element: <Checkout></Checkout>,
+      },
+      {
+        path: "allorders",
+        element: <Ordars></Ordars>,
+      },
+      {
+        path: "Brands",
+        element: <Brands></Brands>,
       },
     ],
   },

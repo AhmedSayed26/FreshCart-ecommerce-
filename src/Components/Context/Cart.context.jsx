@@ -29,6 +29,7 @@ export default function CartProvider({ children }) {
         getAllcart();
       }
     } catch (error) {
+      console.log(error);
       toast.error("error....");
     } finally {
       toast.dismiss(loading);
@@ -62,6 +63,7 @@ export default function CartProvider({ children }) {
       toast.success("item removed successfully");
       setcartInfo(data);
     } catch (error) {
+      console.log(error);
       toast.error("error...");
     } finally {
       toast.dismiss(Loading);
@@ -82,6 +84,7 @@ export default function CartProvider({ children }) {
       toast.success("you cart empty");
       console.log(data);
     } catch (error) {
+      console.log(error);
       toast.error("error...");
     } finally {
       toast.dismiss(loading);

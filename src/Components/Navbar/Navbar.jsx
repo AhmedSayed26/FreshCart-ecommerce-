@@ -46,7 +46,7 @@ export default function Navbar() {
               </li>
               <li>
                 <NavLink
-                  to={"/brands"}
+                  to={"/Brands"}
                   className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
                 >
                   Brands
@@ -54,7 +54,7 @@ export default function Navbar() {
               </li>
               <li>
                 <NavLink
-                  to={"/orders"}
+                  to={"/allorders"}
                   className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
                 >
                   orders
