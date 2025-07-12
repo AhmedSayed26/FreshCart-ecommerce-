@@ -1,10 +1,12 @@
-import { ShoppingCart, Eye, Pause } from "lucide-react";
+import { ShoppingCart, Eye, Heart } from "lucide-react";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../Context/Cart.context";
 import { NavLink, Link } from "react-router-dom";
+import { wishlisttContext } from "../Context/WishList.context";
 
 export default function Card({ productInfo }) {
+  const [color, setcolor] = useState(false);
   const {
     id,
     title,
@@ -16,6 +18,8 @@ export default function Card({ productInfo }) {
     index,
   } = productInfo;
   const { addTocart } = useContext(CartContext);
+  const { AddToWishList, RemoveFromWishList, wishlistInfo } =
+    useContext(wishlisttContext);
   return (
     <div className="container">
       <div className="cursor-pointer">
@@ -30,7 +34,17 @@ export default function Card({ productInfo }) {
           <div className="relative">
             <img src={imageCover} alt={title} />
             <div className="absolute flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Pause className="IconStyle" />
+              <Heart
+                className={`IconStyle ${color ? "bg-red-500" : "bg-mainColor"}`}
+                onClick={() => {
+                  if (color) {
+                    RemoveFromWishList(id);
+                  } else {
+                    AddToWishList(id);
+                  }
+                  setcolor(!color);
+                }}
+              />
               <ShoppingCart
                 onClick={() => {
                   addTocart(id);

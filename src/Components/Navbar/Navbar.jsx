@@ -46,6 +46,14 @@ export default function Navbar() {
               </li>
               <li>
                 <NavLink
+                  to={"/wishlist"}
+                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
+                >
+                  WishList
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to={"/Brands"}
                   className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
                 >

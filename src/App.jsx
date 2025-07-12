@@ -17,7 +17,11 @@ import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Checkout from "./Pages/Checkout/checkout";
 import Ordars from "./Pages/Ordars/ALLOrdars";
 import Brands from "./Pages/Brands/Brands";
-// import checkout from "./Pages/Checkout/Checkout";
+import BrandProvider from "./Components/Context/brand.context";
+import Productss from "./Pages/Products/Productss";
+import Category from "./Pages/Category/Category";
+import WishList from "./Pages/WishList/WishList";
+import WishListProvider from "./Components/Context/WishList.context";
 
 const routes = createBrowserRouter([
   {
@@ -55,6 +59,18 @@ const routes = createBrowserRouter([
       {
         path: "Brands",
         element: <Brands></Brands>,
+      },
+      {
+        path: "products",
+        element: <Productss></Productss>,
+      },
+      {
+        path: "categories",
+        element: <Category></Category>,
+      },
+      {
+        path: "wishlist",
+        element: <WishList></WishList>,
       },
     ],
   },
@@ -94,10 +110,14 @@ function App() {
   return (
     <>
       <TokenProvider>
-        <CartProvider>
-          <RouterProvider router={routes}></RouterProvider>
-          <Toaster></Toaster>
-        </CartProvider>
+        <WishListProvider>
+          <BrandProvider>
+            <CartProvider>
+              <RouterProvider router={routes}></RouterProvider>
+              <Toaster></Toaster>
+            </CartProvider>
+          </BrandProvider>
+        </WishListProvider>
       </TokenProvider>
     </>
   );
