@@ -75,6 +75,32 @@ export default function Card({ productInfo }) {
                 </span>
               )}
             </div>
+            <div className="border-t-2 border-gray-400/30 md:hidden">
+              <div className="flex justify-center items-center gap-8 p-2  md:hidden ">
+                <Heart
+                  className={`IconStyle ${
+                    color ? "bg-red-500" : "bg-mainColor/80"
+                  }`}
+                  onClick={() => {
+                    if (color) {
+                      RemoveFromWishList(id);
+                    } else {
+                      AddToWishList(id);
+                    }
+                    setcolor(!color);
+                  }}
+                />
+                <ShoppingCart
+                  onClick={() => {
+                    addTocart(id);
+                  }}
+                  className="IconStyle bg-mainColor/80"
+                />
+                <Link to={`/Product/${id}`}>
+                  <Eye className="IconStyle bg-mainColor/80" />
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
