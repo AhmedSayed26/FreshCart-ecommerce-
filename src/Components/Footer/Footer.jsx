@@ -21,22 +21,81 @@ export default function Footer() {
           <input className="input" type="text" placeholder="email..." />
           <button className="btn">Share app link</button>
         </div>
-        <div className="flex justify-between items-center">
+        {/* <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <h3>payment prtenrs</h3>
-            <img className="w-[3.75rem]" src={amazonLogo} alt="amazonLogo" />
             <img
-              className="w-[3.75rem]"
+              className="w-[25px] md:w-[60px]"
+              src={amazonLogo}
+              alt="amazonLogo"
+            />
+            <img
+              className="w-[25px] md:w-[60px]"
               src={americalLogo}
               alt="americalLogo"
             />
-            <img className="w-[3.75rem]" src={paybalLogo} alt="paybalLogo" />
-            <img className="w-[3.75rem]" src={masterLogo} alt="masterLogo" />
+            <img
+              className="w-[25px] md:w-[60px]"
+              src={paybalLogo}
+              alt="paybalLogo"
+            />
+            <img
+              className="w-[25px] md:w-[60px]"
+              src={masterLogo}
+              alt="masterLogo"
+            />
           </div>
           <div className="flex items-center gap-2">
             <h3>Get deliveries with FreshCart</h3>
-            <img className="w-[3.75rem]" src={appleLogo} alt="appleLogo" />
-            <img className="w-[3.75rem]" src={googleLogo} alt="googleLogo" />
+            <img
+              className="w-[25px] md:w-[60px]"
+              src={appleLogo}
+              alt="appleLogo"
+            />
+            <img
+              className="w-[25px] md:w-[60px]"
+              src={googleLogo}
+              alt="googleLogo"
+            />
+          </div>
+        </div> */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+          <div className="flex items-center gap-2">
+            <h3>Payment Partners</h3>
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={amazonLogo}
+              alt="amazonLogo"
+            />
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={americalLogo}
+              alt="americalLogo"
+            />
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={paybalLogo}
+              alt="paybalLogo"
+            />
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={masterLogo}
+              alt="masterLogo"
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <h3>Get deliveries with FreshCart</h3>
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={appleLogo}
+              alt="appleLogo"
+            />
+            <img
+              className="w-[35px] md:w-[60px]"
+              src={googleLogo}
+              alt="googleLogo"
+            />
           </div>
         </div>
       </div>

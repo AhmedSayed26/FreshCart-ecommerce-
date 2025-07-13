@@ -1,78 +1,92 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { LogOut, ShoppingCart } from "lucide-react";
 import { TokenContext } from "../Context/Token.Context";
 import { CartContext } from "../Context/Cart.context";
+
 export default function Navbar() {
   const { token, LogOOut } = useContext(TokenContext);
-  const { cartInfo } = useContext(CartContext);
-  // const { cartInfo, getAllcart } = useContext(CartContext);
-  // useEffect(() => {
-  //   getAllcart();
-  // }, []);
+  const { cartInfo, getAllcart } = useContext(CartContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  useEffect(() => {
+    getAllcart();
+  }, []);
+
   return (
-    <>
-      <nav className="bg-slate-200 py-5">
-        <div className="container flex justify-between items-center">
+    <nav className="bg-slate-200 py-5 fixed top-0 w-full z-10">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <div>
           <NavLink to={"home"}>
             <img src={logo} alt="logo img" />
           </NavLink>
-          {token ? (
-            <ul className="flex justify-between items-center gap-3">
+        </div>
+
+        {/* {token && (
+          <div className="flex ml-auto">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-2xl"
+            >
+              ☰
+            </button>
+          </div>
+        )} */}
+
+        <div>
+          {token && (
+            <ul
+              className={`${
+                isMenuOpen ? "block" : "hidden"
+              } absolute top-18 left-0 w-full bg-slate-100 md:bg-transparent md:static md:flex md:flex-row gap-4 items-center md:gap-3 md:justify-start md:text-left z-20 px-4 py-3 md:p-0 space-y-3 md:space-y-0 `}
+            >
               <li>
-                <NavLink
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                  to={""}
-                >
-                  Home
-                </NavLink>
+                <NavLink to={""}>Home</NavLink>
               </li>
               <li>
-                <NavLink
-                  to={"/categories"}
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                >
-                  Categories
-                </NavLink>
+                <NavLink to={"/categories"}>Categories</NavLink>
               </li>
               <li>
-                <NavLink
-                  to={"/products"}
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                >
-                  Products
-                </NavLink>
+                <NavLink to={"/products"}>Products</NavLink>
               </li>
               <li>
-                <NavLink
-                  to={"/wishlist"}
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                >
-                  WishList
-                </NavLink>
+                <NavLink to={"/wishlist"}>WishList</NavLink>
               </li>
               <li>
-                <NavLink
-                  to={"/Brands"}
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                >
-                  Brands
-                </NavLink>
+                <NavLink to={"/Brands"}>Brands</NavLink>
               </li>
               <li>
-                <NavLink
-                  to={"/allorders"}
-                  className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-                >
-                  orders
-                </NavLink>
+                <NavLink to={"/allorders"}>Orders</NavLink>
               </li>
             </ul>
-          ) : null}
+          )}
+        </div>
 
-          <ul className="flex justify-between items-center gap-3">
-            {token ? (
+        <div>
+          {token && (
+            <div className="md:hidden flex items-center gap-4 ml-auto pr-2">
+              <div className="relative">
+                <NavLink className="relative" to={"/cart"}>
+                  <ShoppingCart className="text-xl" />
+                  <span className="absolute -top-2 -right-2 bg-mainColor text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                    {cartInfo ? cartInfo.numOfCartItems : 0}
+                  </span>
+                </NavLink>
+              </div>
+
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-2xl focus:outline-none"
+              >
+                ☰
+              </button>
+              <NavLink onClick={LogOOut} to={"/login"}>
+                <LogOut />
+              </NavLink>
+            </div>
+          )}
+          <ul className="hidden md:flex items-center gap-3">
+            {token && (
               <li>
                 <NavLink className="relative" to={"/cart"}>
                   <ShoppingCart></ShoppingCart>
@@ -81,7 +95,7 @@ export default function Navbar() {
                   </h5>
                 </NavLink>
               </li>
-            ) : null}
+            )}
             <li>
               <i className="fa-brands fa-facebook"></i>
             </li>
@@ -94,28 +108,26 @@ export default function Navbar() {
             <li>
               <i className="fa-brands fa-linkedin"></i>
             </li>
+
             {token ? (
-              <li
-                onClick={LogOOut}
-                className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer"
-              >
+              <li onClick={LogOOut}>
                 <NavLink to={"/login"}>
                   <LogOut />
                 </NavLink>
               </li>
             ) : (
               <>
-                <li className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer">
+                <li>
                   <NavLink to={"/login"}>Login</NavLink>
                 </li>
-                <li className="hover:font-semibold hover:transition-all hover:duration-200 hover:cursor-pointer">
-                  <NavLink to={"register"}>register</NavLink>
+                <li>
+                  <NavLink to={"register"}>Register</NavLink>
                 </li>
               </>
             )}
           </ul>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }

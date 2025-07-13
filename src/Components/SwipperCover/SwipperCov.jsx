@@ -9,7 +9,7 @@ import { Autoplay } from "swiper/modules";
 export default function SwipperCov() {
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-20">
         <div className="grid grid-cols-12 ">
           <div className="col-span-8">
             <Swiper

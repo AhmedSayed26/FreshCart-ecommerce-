@@ -28,12 +28,16 @@ export default function WishList() {
             >
               <div className="flex items-center gap-5">
                 <div>
-                  <img className="w-[200px]" src={product.imageCover} alt="" />
+                  <img
+                    className="w-[100px] md:w-[200px]"
+                    src={product.imageCover}
+                    alt=""
+                  />
                 </div>
                 <div className="space-y-5">
                   <div>
-                    <h3 className="text-lg font-semibold">
-                      {product.title.split(" ").slice(0, 3).join(" ")}
+                    <h3 className="text-sm md:text-lg font-semibold">
+                      {product.title.split(" ").slice(0, 2).join(" ")}
                     </h3>
                     <h3 className="text-md">{product.category.name}</h3>
                   </div>

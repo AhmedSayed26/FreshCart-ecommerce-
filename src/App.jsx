@@ -22,6 +22,8 @@ import Productss from "./Pages/Products/Productss";
 import Category from "./Pages/Category/Category";
 import WishList from "./Pages/WishList/WishList";
 import WishListProvider from "./Components/Context/WishList.context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const routes = createBrowserRouter([
   {
@@ -106,19 +108,23 @@ const routes = createBrowserRouter([
   },
 ]);
 
+const x = new QueryClient();
 function App() {
   return (
     <>
-      <TokenProvider>
-        <WishListProvider>
-          <BrandProvider>
-            <CartProvider>
-              <RouterProvider router={routes}></RouterProvider>
-              <Toaster></Toaster>
-            </CartProvider>
-          </BrandProvider>
-        </WishListProvider>
-      </TokenProvider>
+      <QueryClientProvider client={x}>
+        <TokenProvider>
+          <WishListProvider>
+            <BrandProvider>
+              <CartProvider>
+                <RouterProvider router={routes}></RouterProvider>
+                <Toaster></Toaster>
+              </CartProvider>
+            </BrandProvider>
+          </WishListProvider>
+        </TokenProvider>
+        {/* <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools> */}
+      </QueryClientProvider>
     </>
   );
 }

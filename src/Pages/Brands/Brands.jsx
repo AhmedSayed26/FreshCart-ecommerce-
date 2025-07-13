@@ -16,14 +16,14 @@ export default function Brands() {
   // }, []);
   return (
     <>
-      <h2 className="mt-10 text-4xl font-semibold text-mainColor flex justify-center items-center">
+      <h2 className="mt-15 text-4xl font-semibold text-mainColor flex justify-center items-center">
         All Brands
       </h2>
       {popup && selectedBrand && (
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-gray-500/40 z-40"></div>
 
-          <div className="fixed bg-white top-[10%] left-1/2 -translate-x-1/2 z-50 w-[500px] rounded-xl shadow-lg">
+          <div className="fixed bg-white top-[10%] left-1/2 -translate-x-1/2 z-50 w-[350px] md:w-[500px] rounded-xl shadow-lg">
             <div
               onClick={() => setpopup(false)}
               className="flex justify-end cursor-pointer border-b-2 border-gray-500 text-2xl p-2"
@@ -39,7 +39,7 @@ export default function Brands() {
               </div>
               <div>
                 <img
-                  className="w-[200px]"
+                  className="w-[100px] md:w-[200px]"
                   src={selectedBrand.image}
                   alt={selectedBrand.name}
                 />
@@ -61,7 +61,7 @@ export default function Brands() {
         <Loading></Loading>
       ) : (
         <>
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6 my-10 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6 my-10 ">
             {brands.map((brand) => (
               <div
                 onClick={async () => {

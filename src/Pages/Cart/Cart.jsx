@@ -15,8 +15,8 @@ export default function Cart() {
     <>
       {cartInfo ? (
         <>
-          <section className="bg-slate-200 p-5 my-8">
-            <h2 className="text-3xl font-semibold flex items-center gap-4">
+          <section className="bg-slate-200 p-5 mt-15 my-4">
+            <h2 className="text-3xl font-semibold flex items-center gap-4 ">
               shop cart
             </h2>
             {cartInfo.data.totalCartPrice ? (

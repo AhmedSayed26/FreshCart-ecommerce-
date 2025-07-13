@@ -1,32 +1,40 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./../loading/Loading";
 import CategCard from "./../CategCard.jsx/CategCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { useQuery } from "@tanstack/react-query";
 
 export default function SwiperCateg() {
-  const [categ, setCateg] = useState(null);
+  // const [categ, setCateg] = useState(null);
   async function getCateImage() {
     try {
       const options = {
         url: "https://ecommerce.routemisr.com/api/v1/categories",
         method: "GET",
       };
-      const { data } = await axios.request(options);
-      console.log(data.data);
-      setCateg(data.data);
+      return await axios.request(options);
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    getCateImage();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: ["category"],
+    queryFn: getCateImage,
+    staleTime: 200000000,
+    refetchOnMount: false,
+  });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  // useEffect(() => {
+  //   getCateImage();
+  // }, []);
   return (
     <>
-      {categ ? (
+      {
         <div className="my-8 mt-8">
           <h2 className="text-xl font-semibold mb-3">
             Shop Popular Categories:
@@ -48,16 +56,14 @@ export default function SwiperCateg() {
               1024: { slidesPerView: 5 },
             }}
           >
-            {categ.map((categ) => (
+            {data.data.data.map((categ) => (
               <SwiperSlide key={categ._id}>
                 <CategCard categInfo={categ} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-      ) : (
-        <Loading />
-      )}
+      }
     </>
   );
 }
