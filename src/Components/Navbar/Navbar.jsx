@@ -22,15 +22,16 @@ export default function Navbar() {
           </NavLink>
         </div>
 
-        {/* {token && (
-          <div className="flex ml-auto">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-2xl"
-            >
-              ☰
-            </button>
-          </div>
+        {/* {token ? (
+          ""
+        ) : (
+          <ul>
+            <li>
+              <NavLink to={"register"} className={"flex md:hidden"}>
+                Register
+              </NavLink>
+            </li>
+          </ul>
         )} */}
 
         <div>

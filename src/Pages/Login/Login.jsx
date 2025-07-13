@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { TokenContext } from "../../Components/Context/Token.Context";
 
@@ -139,14 +139,19 @@ export default function Login() {
                 "Login"
               )}
             </button>
-            <button
-              className="text-blue-500 font-bold cursor-pointer hover:underline"
-              onClick={() => {
-                navigate("/WriteEmail");
-              }}
-            >
-              Forget password ?
-            </button>
+            <div className="space-y-2">
+              <button
+                className="text-blue-500 font-bold cursor-pointer hover:underline"
+                onClick={() => {
+                  navigate("/WriteEmail");
+                }}
+              >
+                Forget password ?
+              </button>
+              <div className="text-blue-500 font-bold cursor-pointer hover:underline">
+                <Link to={"/register"}>Create Account ?</Link>
+              </div>
+            </div>
           </div>
         </form>
       </div>
