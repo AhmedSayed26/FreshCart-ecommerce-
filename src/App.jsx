@@ -14,7 +14,7 @@ import TokenProvider from "./Components/Context/Token.Context";
 import CartProvider from "./Components/Context/Cart.context";
 import Cart from "./Pages/Cart/Cart";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
-import Checkout from "./Pages/Checkout/checkout";
+import Checkout from "./Pages/Checkout/Checkout";
 import Ordars from "./Pages/Ordars/ALLOrdars";
 import Brands from "./Pages/Brands/Brands";
 import BrandProvider from "./Components/Context/brand.context";
