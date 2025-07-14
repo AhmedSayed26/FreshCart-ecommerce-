@@ -33,7 +33,7 @@ export default function Card({ productInfo }) {
           >
             <div className="relative">
               <img src={imageCover} alt={title} />
-              <div className="absolute flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute hidden md:flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Heart
                   className={`IconStyle ${
                     wishlistItems.includes(id) ? "bg-red-500" : "bg-mainColor"
