@@ -37,8 +37,11 @@ export default function Productss() {
   async function getRangeFilteredProducts(min, max) {
     try {
       setLoading(true);
-      const url = `https://ecommerce.routemisr.com/api/v1/products?price[gte]=${min}&price[lte]=${max}`;
-      const { data } = await axios.get(url);
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/products?price[gte]=${min}&price[lte]=${max}`,
+        method: "GET",
+      };
+      const { data } = await axios.request(options);
       setproducts(data.data);
       console.log("Filtered by Range:", data.data);
     } catch (error) {

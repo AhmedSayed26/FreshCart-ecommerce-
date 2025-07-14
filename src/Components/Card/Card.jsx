@@ -31,7 +31,7 @@ export default function Card({ productInfo }) {
             transition={{ duration: 0.1, delay: index * 0.001 }}
             className="space-y-3 relative shadow-md p-2 rounded-md group"
           >
-            <div className="relative">
+            <div className="relative ">
               <img src={imageCover} alt={title} />
               <div className="absolute hidden md:flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Heart
