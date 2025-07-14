@@ -120,7 +120,7 @@ export default function Productss() {
           ) : products?.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {products.map((item) => (
-                <div key={item.id} className="border p-2 rounded shadow">
+                <div key={item.id} className="shadow-md p-2 rounded-md">
                   <div className="mb-2">
                     <img
                       src={item.imageCover}
