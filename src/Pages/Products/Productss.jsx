@@ -1,49 +1,170 @@
-import React from "react";
 import axios from "axios";
-// import { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Loading from "../../Components/loading/Loading";
-import Card from "../../Components/Card/Card";
-import { useQuery } from "@tanstack/react-query";
-export default function Productss() {
-  // const [products, setProducts] = useState(null);
+import { useFormik } from "formik";
+import { ShoppingCart, Eye, Heart } from "lucide-react";
+import { CartContext } from "../../Components/Context/Cart.context";
+import { Link } from "react-router-dom";
+import { wishlisttContext } from "../../Components/Context/WishList.context";
 
-  async function getProducts() {
-    const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/products",
-      method: "get",
-    };
-    return await axios.request(options);
+export default function Productss() {
+  const [products, setproducts] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
+  // const [color, setcolor] = useState(false);
+  const { addTocart } = useContext(CartContext);
+  const { AddToWishList, RemoveFromWishList, wishlistItems } =
+    useContext(wishlisttContext);
+
+  async function getSortProducts(values) {
+    try {
+      setLoading(true);
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/products?price[lte]=${values.price}`,
+        method: "GET",
+      };
+      const { data } = await axios.request(options);
+      setproducts(data.data);
+      console.log("Sorted by Max Price:", data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
-  const { data, isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
-    staleTime: 200000000,
-    refetchOnMount: false,
+
+  async function getRangeFilteredProducts(min, max) {
+    try {
+      setLoading(true);
+      const url = `https://ecommerce.routemisr.com/api/v1/products?price[gte]=${min}&price[lte]=${max}`;
+      const { data } = await axios.get(url);
+      setproducts(data.data);
+      console.log("Filtered by Range:", data.data);
+    } catch (error) {
+      console.error("Error fetching range products:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      price: "",
+    },
+    onSubmit: (values) => {
+      getSortProducts(values);
+    },
   });
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
+
   return (
-    <div>
-      {
-        <>
-          <h2 className="text-xl font-semibold mt-15 d-block">
-            Shop Popular Products :
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8">
-            {data.data.data.map((product) => (
-              <Card
-                productInfo={product}
-                index={product.index}
-                key={product.id}
-              ></Card>
-            ))}
+    <>
+      <div className="py-20 container mx-auto flex flex-col md:flex-row gap-6 justify-between items-start">
+        <div className="bg-amber-100 p-4 rounded w-full md:w-1/3">
+          <form onSubmit={formik.handleSubmit} className="mb-6">
+            <label className="block font-semibold mb-1">
+              Sort by Max Price :
+            </label>
+            <input
+              className="input border border-gray-300 p-2 w-full rounded"
+              type="number"
+              name="price"
+              placeholder="e.g. 200"
+              value={formik.values.price}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <button
+              type="submit"
+              className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Filter
+            </button>
+          </form>
+          <div>
+            <h2 className="font-semibold mb-2">Filter by Price Range:</h2>
+            <label>Min: {minPrice} EGP</label>
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              step="10"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+              className="w-full"
+            />
+
+            <label className="mt-2 block">Max: {maxPrice} EGP</label>
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              step="10"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              className="w-full"
+            />
+
+            <button
+              onClick={() => getRangeFilteredProducts(minPrice, maxPrice)}
+              className="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+            >
+              Apply Range Filter
+            </button>
           </div>
-        </>
-      }
-    </div>
+        </div>
+
+        <div className=" flex-1 rounded w-full">
+          {loading ? (
+            <Loading />
+          ) : products?.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {products.map((item) => (
+                <div key={item.id} className="border p-2 rounded shadow">
+                  <div className="mb-2">
+                    <img
+                      src={item.imageCover}
+                      alt={item.title}
+                      className="w-full h-40 object-cover"
+                    />
+                    <h2 className="text-lg font-light mt-2 line-clamp-1">
+                      {item.title}
+                    </h2>
+                    <p className="text-sm text-mainColor">{item.price} EGP</p>
+                  </div>
+                  <div className="border-t-2 border-gray-500/30 p-2 flex justify-between items-center">
+                    <Heart
+                      className={`IconStyle ${
+                        wishlistItems.includes(item.id)
+                          ? "bg-red-500"
+                          : "bg-mainColor"
+                      }`}
+                      onClick={() => {
+                        if (wishlistItems.includes(item.id)) {
+                          RemoveFromWishList(item.d);
+                        } else {
+                          AddToWishList(item.id);
+                        }
+                      }}
+                    />
+                    <ShoppingCart
+                      onClick={() => {
+                        addTocart(item.id);
+                      }}
+                      className="IconStyle"
+                    />
+                    <Link to={`/Product/${item.id}`}>
+                      <Eye className="IconStyle" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-red-600 text-2xl">No products found.</p>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

@@ -1,12 +1,11 @@
 import { ShoppingCart, Eye, Heart } from "lucide-react";
 import { motion } from "framer-motion";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../Context/Cart.context";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { wishlisttContext } from "../Context/WishList.context";
 
 export default function Card({ productInfo }) {
-  const [color, setcolor] = useState(false);
   const {
     id,
     title,
@@ -18,7 +17,8 @@ export default function Card({ productInfo }) {
     index,
   } = productInfo;
   const { addTocart } = useContext(CartContext);
-  const { AddToWishList, RemoveFromWishList } = useContext(wishlisttContext);
+  const { AddToWishList, RemoveFromWishList, wishlistItems } =
+    useContext(wishlisttContext);
   return (
     <div className="container">
       <div className="">
@@ -36,17 +36,17 @@ export default function Card({ productInfo }) {
               <div className="absolute flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Heart
                   className={`IconStyle ${
-                    color ? "bg-red-500" : "bg-mainColor"
+                    wishlistItems.includes(id) ? "bg-red-500" : "bg-mainColor"
                   }`}
                   onClick={() => {
-                    if (color) {
+                    if (wishlistItems.includes(id)) {
                       RemoveFromWishList(id);
                     } else {
                       AddToWishList(id);
                     }
-                    setcolor(!color);
                   }}
                 />
+
                 <ShoppingCart
                   onClick={() => {
                     addTocart(id);
@@ -79,15 +79,14 @@ export default function Card({ productInfo }) {
               <div className="flex justify-center items-center gap-5 p-2  md:hidden ">
                 <Heart
                   className={`IconStyle ${
-                    color ? "bg-red-500" : "bg-mainColor/80"
+                    wishlistItems.includes(id) ? "bg-red-500" : "bg-mainColor"
                   }`}
                   onClick={() => {
-                    if (color) {
+                    if (wishlistItems.includes(id)) {
                       RemoveFromWishList(id);
                     } else {
                       AddToWishList(id);
                     }
-                    setcolor(!color);
                   }}
                 />
                 <ShoppingCart

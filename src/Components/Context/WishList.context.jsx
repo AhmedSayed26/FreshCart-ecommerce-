@@ -8,6 +8,7 @@ export default function WishListProvider({ children }) {
   const { token } = useContext(TokenContext);
   const [wishlistInfo, setwishList] = useState([]);
   //   const [cartInfo, setcartInfo] = useState(null);
+  const [wishlistItems, setWishlistItems] = useState([]);
   async function AddToWishList(productId) {
     const loading = toast.loading("...loading");
     try {
@@ -24,6 +25,7 @@ export default function WishListProvider({ children }) {
       const { data } = await axios.request(option);
       console.log(data);
       if (data.status == "success") {
+        setWishlistItems((prev) => [...prev, productId]);
         toast.success(data.message);
         GetAllWishList();
       }
@@ -46,6 +48,7 @@ export default function WishListProvider({ children }) {
       const { data } = await axios.request(option);
       console.log(data);
       toast.success(data.message);
+      setWishlistItems((prev) => prev.filter((itemId) => itemId !== productId));
       //   setwishList(data.data);
       GetAllWishList();
     } catch (error) {
@@ -75,6 +78,7 @@ export default function WishListProvider({ children }) {
         RemoveFromWishList,
         GetAllWishList,
         wishlistInfo,
+        wishlistItems,
       }}
     >
       {children}
