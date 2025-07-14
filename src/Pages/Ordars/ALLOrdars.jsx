@@ -33,7 +33,7 @@ export default function ALLOrdars() {
         orders.map((ordars) => (
           <div
             key={ordars.id}
-            className="border-2 border-gray-500/30 p-5 my-10"
+            className="border-2 border-gray-500/30 p-5 my-15"
           >
             <div className="flex justify-between items-center">
               <div>
@@ -41,7 +41,7 @@ export default function ALLOrdars() {
                 <h3>#{ordars.id}</h3>
               </div>
               <div>
-                <button className="btn bg-blue-700 mx-4">
+                <button className="btn bg-blue-700 mx-2 md:mx-4">
                   {ordars.isDelivered ? "delivered" : "not delivered "}
                 </button>
                 <button

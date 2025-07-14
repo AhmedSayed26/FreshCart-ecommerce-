@@ -29,7 +29,7 @@ export default function WishList() {
               <div className="flex items-center gap-5">
                 <div>
                   <img
-                    className="w-[100px] md:w-[200px]"
+                    className="w-[150px] md:w-[200px]"
                     src={product.imageCover}
                     alt=""
                   />
@@ -53,12 +53,18 @@ export default function WishList() {
                     <TrashIcon></TrashIcon>
                     <p>Remove</p>
                   </button>
+                  <button
+                    onClick={() => addTocart(product.id)}
+                    className="btn p-2 flex md:hidden"
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               </div>
               <div>
                 <button
                   onClick={() => addTocart(product.id)}
-                  className="btn p-2"
+                  className="btn p-2 hidden md:flex"
                 >
                   Add To Cart
                 </button>

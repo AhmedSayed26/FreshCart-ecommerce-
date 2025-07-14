@@ -59,7 +59,7 @@ export default function Card({ productInfo }) {
               </div>
             </div>
             <h3 className="text-sm text-mainColor">{category.name}</h3>
-            <h2>{title.split(" ", 2).join(" ")}</h2>
+            <h2 className="line-clamp-1">{title.split(" ", 2).join(" ")}</h2>
             <div className="flex justify-between items-center">
               {priceAfterDiscount ? (
                 <h3 className="text-red-500/60 line-through">{price} EGP</h3>

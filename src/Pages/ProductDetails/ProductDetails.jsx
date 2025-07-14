@@ -80,7 +80,7 @@ export default function ProductDetails() {
               </button>
             </div>
           </div>
-          <div className="my-10">
+          <div className="my-11">
             <h2 className="text-2xl font-semibold my-5">Related Product :</h2>
             <Swiper
               spaceBetween={10}
