@@ -32,9 +32,9 @@ export default function ReciveCode() {
         navigate("/ResetPassword");
       }, 1500);
     } catch (error) {
-      console.log("error");
-      toast.error(error);
-      toast.error("code reJected");
+      console.log(error);
+      // toast.error(error);
+      toast.error("code reJected please write a valid code");
     } finally {
       toast.dismiss(loading);
     }
