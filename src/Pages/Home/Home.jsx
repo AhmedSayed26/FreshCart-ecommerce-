@@ -6,6 +6,7 @@ import Card from "../../Components/Card/Card";
 import Loading from "../../Components/loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import "animate.css";
 
 export default function Home() {
   const [page, setpage] = useState(1);
@@ -48,10 +49,10 @@ export default function Home() {
       <SwiperCateg></SwiperCateg>
       {
         <>
-          <h2 className="text-xl font-semibold mb-3 d-block">
+          <h2 className="text-xl font-semibold mb-3 d-block ">
             Shop Popular Products :
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
             {data.data.data.map((product) => (
               <Card
                 productInfo={product}

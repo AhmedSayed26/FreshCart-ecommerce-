@@ -6,6 +6,9 @@ import { ShoppingCart, Eye, Heart } from "lucide-react";
 import { CartContext } from "../../Components/Context/Cart.context";
 import { Link } from "react-router-dom";
 import { wishlisttContext } from "../../Components/Context/WishList.context";
+import "animate.css";
+
+// animate__animated animate__bounce
 
 export default function Productss() {
   const [products, setproducts] = useState(null);
@@ -63,7 +66,7 @@ export default function Productss() {
   return (
     <>
       <div className="py-20 container mx-auto flex flex-col md:flex-row gap-6 justify-between items-start">
-        <div className="bg-amber-100 p-4 rounded w-full md:w-1/3">
+        <div className="bg-amber-100 p-4 rounded w-full md:w-1/3 ">
           <form onSubmit={formik.handleSubmit} className="mb-6">
             <label className="block font-semibold mb-1">
               Sort by Max Price :
@@ -121,7 +124,7 @@ export default function Productss() {
           {loading ? (
             <Loading />
           ) : products?.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 animate__animated animate__fadeInUp">
               {products.map((item) => (
                 <div key={item.id} className="shadow-md p-2 rounded-md">
                   <div className="mb-2">

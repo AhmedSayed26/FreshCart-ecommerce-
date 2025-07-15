@@ -16,7 +16,7 @@ export default function Brands() {
   // }, []);
   return (
     <>
-      <h2 className="mt-15 text-4xl font-semibold text-mainColor flex justify-center items-center">
+      <h2 className="mt-15 text-4xl font-semibold text-mainColor flex justify-center items-center animate__animated animate__fadeInUp">
         All Brands
       </h2>
       {popup && selectedBrand && (
@@ -61,7 +61,7 @@ export default function Brands() {
         <Loading></Loading>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6 my-10 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6 my-10 animate__animated animate__fadeInUp ">
             {brands.map((brand) => (
               <div
                 onClick={async () => {

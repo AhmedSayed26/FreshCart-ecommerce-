@@ -24,7 +24,7 @@ export default function WishList() {
           <>
             <div
               key={product.id}
-              className="flex justify-between items-center p-4"
+              className="flex justify-between items-center p-4 animate__animated animate__fadeInUp"
             >
               <div className="flex items-center gap-5">
                 <div>

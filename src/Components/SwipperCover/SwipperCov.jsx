@@ -5,12 +5,13 @@ import img3 from "../../assets/images/slider-image-1.jpeg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import "animate.css";
 
 export default function SwipperCov() {
   return (
     <>
       <div className="container mt-20">
-        <div className="grid grid-cols-12 ">
+        <div className="grid grid-cols-12 animate__animated animate__fadeInUp">
           <div className="col-span-8">
             <Swiper
               loop={true}

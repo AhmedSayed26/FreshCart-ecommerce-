@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import "animate.css";
 
 export default function CategCard({ categInfo }) {
   const { _id, image, name } = categInfo;

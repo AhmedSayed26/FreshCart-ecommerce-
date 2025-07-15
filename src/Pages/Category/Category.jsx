@@ -33,10 +33,10 @@ export default function Category() {
     <div>
       {
         <div className="my-8 mt-8">
-          <h2 className="text-xl font-semibold mt-15 my-5 ">
+          <h2 className="text-xl font-semibold mt-15 my-5 animate__animated animate__fadeInUp ">
             Shop Popular Categories:
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-4 gap-6 animate__animated animate__fadeInUp">
             {data.data.data.map((categ) => (
               <div key={categ._id}>
                 <CategCard categInfo={categ} />

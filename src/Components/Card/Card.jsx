@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { CartContext } from "../Context/Cart.context";
 import { Link } from "react-router-dom";
 import { wishlisttContext } from "../Context/WishList.context";
+import "animate.css";
 
 export default function Card({ productInfo }) {
   const {

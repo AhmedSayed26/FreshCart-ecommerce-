@@ -33,7 +33,7 @@ export default function ALLOrdars() {
         orders.map((ordars) => (
           <div
             key={ordars.id}
-            className="border-2 border-gray-500/30 p-5 my-15"
+            className="border-2 border-gray-500/30 p-5 my-15 animate__animated animate__fadeInUp"
           >
             <div className="flex justify-between items-center">
               <div>
@@ -54,7 +54,7 @@ export default function ALLOrdars() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-5 animate__animated animate__fadeInUp">
               {ordars.cartItems.map((product) => (
                 <div
                   key={product.product.id}

@@ -8,7 +8,7 @@ export default function CartItem({ cartInfo }) {
   const { imageCover, title, id, category } = product;
   const { RemoveItem, updateCart } = useContext(CartContext);
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center my-4 px-5 gap-4">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center my-4 px-5 gap-4 animate__animated animate__fadeInUp">
       <div className="flex flex-col sm:flex-row gap-4 items-start">
         <img className="w-32 rounded" src={imageCover} alt={title} />
         <div className="space-y-3">
