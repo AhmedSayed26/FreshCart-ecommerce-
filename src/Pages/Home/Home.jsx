@@ -5,24 +5,35 @@ import SwiperCateg from "../../Components/SwiperCateg/SwiperCateg";
 import Card from "../../Components/Card/Card";
 import Loading from "../../Components/loading/Loading";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export default function Home() {
-  // const [products, setProducts] = useState(null);
-  async function getProducts() {
+  const [page, setpage] = useState(1);
+  async function getProducts(x) {
     const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/products",
+      // url: "https://ecommerce.routemisr.com/api/v1/products",
+      url: `https://ecommerce.routemisr.com/api/v1/products?page=${x}`,
       method: "get",
     };
     return await axios.request(options);
   }
+  // async function getProducts2() {
+  //   const options = {
+  //     // url: "https://ecommerce.routemisr.com/api/v1/products",
+  //     url: `https://ecommerce.routemisr.com/api/v1/products?page=${2}`,
+  //     method: "get",
+  //   };
+  //   return await axios.request(options);
+  // }
   // useEffect(() => {
   //   getProducts();
   // }, []);
 
   const { data, isError, isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
-    staleTime: 200000000,
+    queryKey: ["products", page],
+    queryFn: () => getProducts(page),
+    staleTime: 1000 * 60 * 60,
+    keepPreviousData: true,
     refetchOnMount: false,
   });
   if (isLoading) {
@@ -48,6 +59,25 @@ export default function Home() {
                 key={product.id}
               ></Card>
             ))}
+          </div>
+          <div className="m-auto my-3 flex justify-center items-center">
+            <h2
+              className="cursor-pointer p-2 text-1xl text-mainColor font-semibold"
+              onClick={() => {
+                setpage(1);
+              }}
+            >
+              1
+            </h2>
+            <span> </span>,
+            <h2
+              className="cursor-pointer p-2 text-1xl text-mainColor font-semibold"
+              onClick={() => {
+                setpage(2);
+              }}
+            >
+              2
+            </h2>
           </div>
         </>
       }

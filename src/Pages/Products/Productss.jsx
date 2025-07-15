@@ -90,7 +90,7 @@ export default function Productss() {
             <input
               type="range"
               min="0"
-              max="1000"
+              max="10000"
               step="10"
               value={minPrice}
               onChange={(e) => setMinPrice(Number(e.target.value))}
@@ -101,7 +101,7 @@ export default function Productss() {
             <input
               type="range"
               min="0"
-              max="1000"
+              max="30000"
               step="10"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
