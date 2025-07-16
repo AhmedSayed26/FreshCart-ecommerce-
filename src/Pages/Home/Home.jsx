@@ -12,7 +12,7 @@ export default function Home() {
   async function getProducts(x) {
     const options = {
       // url: "https://ecommerce.routemisr.com/api/v1/products",
-      url: `https://ecommerce.routemisr.com/api/v1/products?page=${x}&limit=${15}`,
+      url: `https://ecommerce.routemisr.com/api/v1/products?page=${x}&limit=${12}`,
       method: "get",
     };
     return await axios.request(options);
@@ -96,6 +96,15 @@ export default function Home() {
               }}
             >
               4
+            </h2>
+            <span> </span>,
+            <h2
+              className="cursor-pointer p-2 text-1xl text-mainColor font-semibold"
+              onClick={() => {
+                setpage(5);
+              }}
+            >
+              5
             </h2>
           </div>
         </>
