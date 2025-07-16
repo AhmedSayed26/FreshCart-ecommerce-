@@ -93,6 +93,7 @@ export default function CartProvider({ children }) {
   async function updateCart({ productId, count }) {
     // console.log(productId);
     // console.log(count);
+    const loading = toast.loading("wait...");
     try {
       const options = {
         url: `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
@@ -110,6 +111,8 @@ export default function CartProvider({ children }) {
     } catch (error) {
       console.log(error);
       toast.error("error...");
+    } finally {
+      toast.dismiss(loading);
     }
   }
   return (
