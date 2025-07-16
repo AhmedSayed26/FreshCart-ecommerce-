@@ -50,7 +50,9 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-6 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
             {isLoading ? (
-              <Loading></Loading>
+              <div className="col-span-full">
+                <Loading></Loading>
+              </div>
             ) : (
               data.data.data.map((product) => (
                 <Card
