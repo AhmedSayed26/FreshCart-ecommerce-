@@ -6,14 +6,13 @@ import Card from "../../Components/Card/Card";
 import Loading from "../../Components/loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import "animate.css";
 
 export default function Home() {
   const [page, setpage] = useState(1);
   async function getProducts(x) {
     const options = {
       // url: "https://ecommerce.routemisr.com/api/v1/products",
-      url: `https://ecommerce.routemisr.com/api/v1/products?page=${x}`,
+      url: `https://ecommerce.routemisr.com/api/v1/products?page=${x}&limit=${15}`,
       method: "get",
     };
     return await axios.request(options);
@@ -52,7 +51,7 @@ export default function Home() {
           <h2 className="text-xl font-semibold mb-3 d-block ">
             Shop Popular Products :
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-col-4 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-6 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
             {data.data.data.map((product) => (
               <Card
                 productInfo={product}
@@ -78,6 +77,24 @@ export default function Home() {
               }}
             >
               2
+            </h2>
+            <span> </span>,
+            <h2
+              className="cursor-pointer p-2 text-1xl text-mainColor font-semibold"
+              onClick={() => {
+                setpage(3);
+              }}
+            >
+              3
+            </h2>
+            <span> </span>,
+            <h2
+              className="cursor-pointer p-2 text-1xl text-mainColor font-semibold"
+              onClick={() => {
+                setpage(4);
+              }}
+            >
+              4
             </h2>
           </div>
         </>

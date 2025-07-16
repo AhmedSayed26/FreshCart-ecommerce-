@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { CartContext } from "../Context/Cart.context";
 import { Link } from "react-router-dom";
 import { wishlisttContext } from "../Context/WishList.context";
-import "animate.css";
 
 export default function Card({ productInfo }) {
   const {
@@ -33,7 +32,7 @@ export default function Card({ productInfo }) {
             className="space-y-3 relative shadow-md p-2 rounded-md group"
           >
             <div className="relative ">
-              <img src={imageCover} alt={title} />
+              <img src={imageCover} alt={title} loading="lazy" />
               <div className="absolute hidden md:flex justify-center items-center gap-3 inset-0 bg-mainColor/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Heart
                   className={`IconStyle ${
