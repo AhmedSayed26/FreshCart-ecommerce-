@@ -26,9 +26,9 @@ export default function SwiperCateg() {
     staleTime: 200000000,
     refetchOnMount: false,
   });
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  // if (isLoading) {
+  //   return <Loading></Loading>;
+  // }
   // useEffect(() => {
   //   getCateImage();
   // }, []);
@@ -56,11 +56,15 @@ export default function SwiperCateg() {
               1024: { slidesPerView: 5 },
             }}
           >
-            {data.data.data.map((categ) => (
-              <SwiperSlide key={categ._id}>
-                <CategCard categInfo={categ} />
-              </SwiperSlide>
-            ))}
+            {isLoading ? (
+              <Loading></Loading>
+            ) : (
+              data.data.data.map((categ) => (
+                <SwiperSlide key={categ._id}>
+                  <CategCard categInfo={categ} />
+                </SwiperSlide>
+              ))
+            )}
           </Swiper>
         </div>
       }

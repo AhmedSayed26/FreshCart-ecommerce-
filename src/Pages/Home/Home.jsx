@@ -36,9 +36,6 @@ export default function Home() {
     keepPreviousData: true,
     refetchOnMount: false,
   });
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
   if (isError) {
     return <h2>this page does't work</h2>;
   }
@@ -52,13 +49,17 @@ export default function Home() {
             Shop Popular Products :
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-6 lg:grid-cols-6 gap-4 bg-white mt-8 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
-            {data.data.data.map((product) => (
-              <Card
-                productInfo={product}
-                index={product.index}
-                key={product.id}
-              ></Card>
-            ))}
+            {isLoading ? (
+              <Loading></Loading>
+            ) : (
+              data.data.data.map((product) => (
+                <Card
+                  productInfo={product}
+                  index={product.index}
+                  key={product.id}
+                ></Card>
+              ))
+            )}
           </div>
           <div className="m-auto my-3 flex justify-center items-center">
             <h2
