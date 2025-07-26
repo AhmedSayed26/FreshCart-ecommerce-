@@ -2,9 +2,8 @@
 
 Welcome to **FreshCart**, a full-featured e-commerce web application built with React.js. This project simulates a real-life online shopping experience with modern UI/UX and dynamic API integration.
 
-[🔴 Live Demo on Vercel](fresh-cart-ecommerce-swart.vercel.app)
+[🔴 Live Demo on Vercel](https://fresh-cart-ecommerce-swart.vercel.app/)
 
--Link : fresh-cart-ecommerce-swart.vercel.app
 
 ---
 
